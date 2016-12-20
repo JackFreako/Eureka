@@ -1,18 +1,19 @@
 package edu.mum.eureka.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HelloWorldController {
 
-	@RequestMapping("/welcome")
-	public ModelAndView helloWorld() {
- 
-		String message = "<br><div style='text-align:center;'>"
-				+ "<h3>Eureka Online Shopping </div><br><br>";
-		return new ModelAndView("welcome", "message", message);
+	@RequestMapping({"/","/welcome"})
+	public String welcome(Model model) {
+
+//		model.addAttribute("greeting", "Welcome to our community, Kimosabe!!");
+//		model.addAttribute("tagline", "The one and only place to live, work and play!!");
+
+		return "welcome";
 	}
 	
 }

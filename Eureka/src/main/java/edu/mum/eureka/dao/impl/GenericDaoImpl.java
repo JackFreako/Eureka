@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.mum.eureka.dao.impl;
 
 import java.util.List;
@@ -8,20 +5,13 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.springframework.stereotype.Repository;
-
 import edu.mum.eureka.dao.GenericDao;
 
-/**
- * @author yared
- *
- */
 
-@SuppressWarnings("unchecked")
-@Repository
-public abstract class GenericDaoImpl <T> implements GenericDao<T> {
+/*@SuppressWarnings("unchecked")
+@Repository*/
+public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 
-	
 	@PersistenceContext
     protected EntityManager entityManager;
 
@@ -30,8 +20,6 @@ public abstract class GenericDaoImpl <T> implements GenericDao<T> {
 	public void setDaoType(Class<T> type) {
 			daoType = type;
 	}
-
-	
    
     @Override
     public void save( T entity ){
@@ -39,10 +27,9 @@ public abstract class GenericDaoImpl <T> implements GenericDao<T> {
      }
 
     public void delete( T entity ){
- //       entityManager.remove(entityManager.contains(entity) ? entity : entityManager.merge(entity));
-    	entityManager.merge(entity);
-    	entityManager.remove(entity );
+        entityManager.remove( entity );
      }
+
 	@Override
 	public void delete(Long id) {
         T entity = findOne( id );
@@ -65,4 +52,12 @@ public abstract class GenericDaoImpl <T> implements GenericDao<T> {
 	public T update( T entity ){
 	      return entityManager.merge( entity );
 	   }
-}
+
+ 	@Override
+	public List<T> findAll(String s,Object  hint ){
+ 	    return (List<T>)  entityManager.createQuery("SELECT m FROM Member AS m") 
+ 	    		.setHint(s,hint).getResultList();
+  	}
+	
+
+ }
