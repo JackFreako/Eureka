@@ -4,3 +4,4 @@
 /.classpath
 /.project
 ../.idea/
+/src/main/resources/application.properties
