@@ -6,7 +6,10 @@ import edu.mum.eureka.domain.OrderDetail;
 import edu.mum.eureka.domain.Product;
 import edu.mum.eureka.service.OrderService;
 import edu.mum.eureka.service.ProductService;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -64,6 +67,10 @@ public class OrderController {
 
             //Once order is persisted, remove order from session.
             request.getSession().removeAttribute("order");
+            // send to Rabbit
+            ApplicationContext context = new GenericXmlApplicationContext("classpath:context/rabbit-context.xml");
+            RabbitTemplate topicTemplate =  context.getBean("topicTemplate",RabbitTemplate.class);
+            orderService.publish(topicTemplate, order);
         } else {
             //TODO: Show no order.
         }

@@ -29,6 +29,12 @@
   		<groupId>org.springframework</groupId>
   		<artifactId>spring-webmvc</artifactId>
   	</dependency>
+	 <!-- https://mvnrepository.com/artifact/org.springframework.amqp/spring-rabbit -->
+	 <dependency>
+		 <groupId>org.springframework.amqp</groupId>
+		 <artifactId>spring-rabbit</artifactId>
+		 <version>1.4.5.RELEASE</version>
+	 </dependency>
 
    	<dependency>
   		<groupId>javax.servlet</groupId>
