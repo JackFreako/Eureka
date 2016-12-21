@@ -40,8 +40,8 @@ public class Main {
 	
 	  private void mainInternal(ApplicationContext applicationContext) {
 		  
-		    this.testAccount.testAccount();
-		    //this.testOrder.testOrder();
+//		    this.testAccount.testAccount();
+		    this.testOrder.testOrder();
 		    //this.testProduct.testProduct();
 		    
 		 }

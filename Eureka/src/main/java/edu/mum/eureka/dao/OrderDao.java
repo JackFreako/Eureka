@@ -17,8 +17,6 @@ import edu.mum.eureka.model.PaginationResult;
  */
 public interface OrderDao extends GenericDao<Order> {
 
-	 	public void saveOrder(CartInfo cartInfo);
-	 
 	    public PaginationResult<OrderInfo> listOrderInfo(int page,
 	            int maxResult, int maxNavigationPage);
 	    

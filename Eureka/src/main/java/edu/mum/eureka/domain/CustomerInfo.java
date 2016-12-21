@@ -7,8 +7,8 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "Customer")
-public class Customer {
+@Table(name = "CustomerInfo")
+public class CustomerInfo {
 
     @Id
     @GeneratedValue
@@ -29,6 +29,11 @@ public class Customer {
 
     @Column(name = "Phone", length = 10, nullable = false)
     private String phone;
+
+    //    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "Customer_Id", nullable = false, foreignKey = @ForeignKey(name = "ORDER_Customer_FK"))
+    @Transient
+    private Order order;
 
     public long getId() {
         return id;

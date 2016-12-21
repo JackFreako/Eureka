@@ -2,14 +2,8 @@
  * 
  */
 package edu.mum.eureka.service;
+import edu.mum.eureka.domain.Order;
 
-import org.springframework.stereotype.Service;
-
-/**
- * @author yared
- *
- */
-
-public interface OrderService {
-
+public interface OrderService  {
+    void save(Order order);
 }
