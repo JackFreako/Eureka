@@ -7,6 +7,7 @@ import edu.mum.eureka.dao.OrderDao;
 import edu.mum.eureka.domain.Order;
 import edu.mum.eureka.service.CustomerInfoService;
 import edu.mum.eureka.service.OrderService;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,5 +42,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order getOrderById(long id) {
         return orderDao.findOne(id);
+    }
+
+    @Override
+    public void publish(RabbitTemplate rabbitTemplate, Order order) {
+        rabbitTemplate.convertAndSend("purchases.store", order);
     }
 }
