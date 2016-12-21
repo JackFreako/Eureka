@@ -24,14 +24,15 @@
 	</c:forEach>
 </table>   
 
-    <form action="items/add" method="get">
-           <input id="submit" type="submit"  
-                value="Add item">
+    <form action="products/add" method="get">
+			<input id="submit" type="submit"
+				   value="Add product">
 	</form>
          <form action="users/add" method="get">
            <input id="submit" type="submit"  
                 value="Add user">
 	</form>
+
     <form action="logout" method="get">
            <input id="submit" type="submit"  
                 value="Logout">
