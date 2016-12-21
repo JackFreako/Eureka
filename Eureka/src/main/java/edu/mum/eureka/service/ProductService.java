@@ -1,25 +1,19 @@
-/**
- * 
- */
 package edu.mum.eureka.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import edu.mum.eureka.dao.ProductDao;
-
-/**
- * @author yared
- *
- */
-
+import edu.mum.eureka.domain.Product;
 
 public interface ProductService {
 
-	
-	
-	
+	List<Product> getAllProducts();
+
+  	void save(Product product);
+
+	Product findOne(long id);
+ 
+ 
+
 }
-
-

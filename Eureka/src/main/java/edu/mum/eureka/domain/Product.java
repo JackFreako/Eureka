@@ -1,80 +1,62 @@
 package edu.mum.eureka.domain;
-
-
-import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
-@Table(name = "Products")
 public class Product implements Serializable {
+    private static final long serialVersionUID = 5784L;
 
-    private static final long serialVersionUID = -1000119078147252957L;
-
-
-    @Id
-    @GeneratedValue
-    @Column(name = "Id", unique = true)
-    private long id;
-
-    @Column(name = "Name", length = 25, nullable = false)
-    private String name;
-
-    @Column(name = "Price", nullable = false)
-    private double price;
-
-    @Column(name = "Description", length = 255)
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+     private long id;
+	private String name;
     private String description;
+    private String productId;
+    private float price;
 
-//    private byte[] image;
-
-    // For sort.
-//    private Date createDate;
-
-    public Product() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long code) {
-        this.id = code;
-    }
-
+     public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
     public String getName() {
-        return name;
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+    public String getDescription() {
+        return description;
     }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setDescription(String description) {
+        this.description = description;
     }
-
-    public double getPrice() {
+    public String getProductId() {
+		return productId;
+	}
+	public void setProductId(String productId) {
+		this.productId = productId;
+	}
+	public float getPrice() {
         return price;
     }
-
-    public void setPrice(double price) {
+    public void setPrice(float price) {
         this.price = price;
     }
-
-//    @Temporal(TemporalType.TIMESTAMP)
-//    @Column(name = "Create_Date", nullable = false)
-//    public Date getCreateDate() {
-//        return createDate;
-//    }
-//
-//    public void setCreateDate(Date createDate) {
-//        this.createDate = createDate;
-//    }
-
-//    @Lob
-//    @Column(name = "Image", length = Integer.MAX_VALUE, nullable = true)
-//    public byte[] getImage() {
-//        return image;
-//    }
-//
-//    public void setImage(byte[] image) {
-//        this.image = image;
-//    }
-
-}
+	
+ }

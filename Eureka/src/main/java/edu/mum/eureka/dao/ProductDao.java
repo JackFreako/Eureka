@@ -1,29 +1,17 @@
-/**
- * 
- */
 package edu.mum.eureka.dao;
 
-import edu.mum.eureka.domain.Product;
-import edu.mum.eureka.model.PaginationResult;
-import edu.mum.eureka.model.ProductInfo;
 
-/**
- * @author yared
- *
- */
-public interface ProductDao extends GenericDao<Product> {
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-	
-public Product findProduct(String code);
-    
-    public ProductInfo findProductInfo(String code) ;
+ import edu.mum.eureka.domain.Product;
+
+import edu.mum.eureka.domain.User;
+
+
+	public interface ProductDao extends GenericDao<Product>  
+	{
   
-    
-    public PaginationResult<ProductInfo> queryProducts(int page,
-                       int maxResult, int maxNavigationPage  );
-    
-    public PaginationResult<ProductInfo> queryProducts(int page, int maxResult,
-                       int maxNavigationPage, String likeName);
- 
-    public void save(ProductInfo productInfo);
-}
+	}
+
