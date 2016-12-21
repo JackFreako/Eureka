@@ -41,6 +41,10 @@
 				</div>
 			</c:forEach>
 		</div>
+		<br/>
+		<a href="<spring:url value="/postLogin" />" class="btn btn-default">
+			<span class="glyphicon-hand-left glyphicon"></span> Back to Home
+		</a>
 	</section>
 </body>
 </html>

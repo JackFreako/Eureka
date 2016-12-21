@@ -28,7 +28,11 @@
 			<input id="submit" type="submit"
 				   value="Add product">
 	</form>
-         <form action="users/add" method="get">
+	<form action="products/all" method="get">
+			<input id="submit" type="submit"
+				   value="List products">
+	</form>
+	<form action="users/add" method="get">
            <input id="submit" type="submit"  
                 value="Add user">
 	</form>
