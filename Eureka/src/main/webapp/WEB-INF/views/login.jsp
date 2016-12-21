@@ -10,7 +10,7 @@
 </head>
 <body>
 <div id="global">
-				<h1>Welcome Kimosabe!! </h1>
+				<h1>Eureka Shopping. </h1>
  <form action="<spring:url value="/postLogin"></spring:url>" method="post">
  
     <fieldset>
