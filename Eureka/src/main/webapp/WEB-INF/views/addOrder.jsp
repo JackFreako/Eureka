@@ -15,13 +15,13 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
     <script src="<spring:url value="/resource/js/controllers.js"/>"></script>
-    <title>Cart</title>
+    <title>New Order</title>
 </head>
 <body>
 <section>
     <div class="jumbotron">
         <div class="container">
-            <h1>Cart</h1>
+            <h1>New Order</h1>
         </div>
     </div>
 </section>

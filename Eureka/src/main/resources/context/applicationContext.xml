@@ -53,12 +53,11 @@
     </context:component-scan>
 
 
-	 <aop:aspectj-autoproxy />
-  
-  <!-- order is where in the AOP chain HIGH # low priority-->
-    <tx:annotation-driven transaction-manager="transactionManager"  order="200"/>
-    <tx:annotation-driven transaction-manager="transactionManager"/>
-	
+    <aop:aspectj-autoproxy/>
+
+    <!-- order is where in the AOP chain HIGH # low priority-->
+    <tx:annotation-driven transaction-manager="transactionManager" order="200"/>
+
     <bean id="persistenceExceptionTranslationPostProcessor"
           class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 

@@ -26,6 +26,16 @@ public class ProductController {
         return "products";
     }
 
+    @RequestMapping(value = {"/search"}, method = RequestMethod.GET)
+    public String searchProduct(Model model, @RequestParam("name") String name, @RequestParam("desc") String description, @RequestParam("min") double minPrice, @RequestParam("max") double maxPrice) {
+        model.addAttribute("name", name);
+        model.addAttribute("min", minPrice);
+        model.addAttribute("max", maxPrice);
+        model.addAttribute("desc", description);
+        model.addAttribute("products", productService.findProductByCriteria(name, description, minPrice, maxPrice));
+        return "products";
+    }
+
     @RequestMapping("/product")
     public String getProductById(Model model, @RequestParam("id") Long id) {
 

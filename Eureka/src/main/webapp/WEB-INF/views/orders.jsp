@@ -68,7 +68,7 @@
         </c:forEach>
     </div>
     <div class="row">
-        <a href="/">Home</a>
+        <a href="/welcome">Home</a>
     </div>
 </section>
 </body>

@@ -58,7 +58,7 @@
         </div>
         <div class="row">
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <label>Name</label>
                 </div>
                 <div class="col-md-5">
@@ -70,16 +70,13 @@
                 <div class="col-md-1">
                     <label>Price</label>
                 </div>
-                <div class="col-md-1">
-                    <label>Total</label>
-                </div>
                 <div class="col-md-2">
-                    <label>Action</label>
+                    <label>Total</label>
                 </div>
             </div>
             <c:forEach items="${order.orderDetails}" var="orderDetail">
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <label>${orderDetail.product.name}</label>
                     </div>
                     <div class="col-md-5">
@@ -91,15 +88,8 @@
                     <div class="col-md-1">
                         <label>${orderDetail.price}USD</label>
                     </div>
-                    <div class="col-md-1">
-                        <label>${orderDetail.amount}USD</label>
-                    </div>
                     <div class="col-md-2">
-                        <a
-                                href=" <spring:url value="/orders/removeorderdetail?tempId=${orderDetail.tempId}" /> "
-                                class="btn btn-primary"> <span
-                                class="glyphicon-remove glyphicon"/></span> Remove
-                        </a>
+                        <label>${orderDetail.amount}USD</label>
                     </div>
                 </div>
             </c:forEach>

@@ -10,7 +10,7 @@ import edu.mum.eureka.domain.Product;
 import edu.mum.eureka.rest.service.ProductRestService;
 import edu.mum.eureka.service.ProductService;
 
-@Service
+//@Service
 public class ProductServiceImplREST implements ProductService {
 
 	@Autowired
@@ -29,6 +29,12 @@ public class ProductServiceImplREST implements ProductService {
 	
 	public Product findOne(long productID) {
 		return productRestService.findOne(productID);
+	}
+
+	@Override
+	public List<Product> findProductByCriteria(String name, String description, double minPrice, double maxPrice) {
+		//TODO: How to handel this? Rahul to Yared
+		return null;
 	}
 
 
