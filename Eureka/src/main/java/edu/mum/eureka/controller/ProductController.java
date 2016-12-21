@@ -1,7 +1,7 @@
 package edu.mum.eureka.controller;
 
-import javax.validation.Valid;
-
+import edu.mum.eureka.domain.Product;
+import edu.mum.eureka.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,60 +10,58 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
-import edu.mum.eureka.domain.Product;
-import edu.mum.eureka.service.ProductService;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/products")
 public class ProductController {
-	
-	@Autowired
-	private ProductService productService;
- 
- 	@RequestMapping({"","/all"})
-	public String list(Model model) {
-		model.addAttribute("products", productService.getAllProducts());
-		return "products";
-	}
 
- 	@RequestMapping("/product")
-	public String getProductById(Model model, @RequestParam("id") Long id) {
+    @Autowired
+    private ProductService productService;
 
-		Product product = productService.findOne(id);
-		model.addAttribute("product", product);
+    @RequestMapping({"", "/all"})
+    public String list(Model model) {
+        model.addAttribute("products", productService.getAllProducts());
+        return "products";
+    }
 
-		return "product";
-	}
+    @RequestMapping("/product")
+    public String getProductById(Model model, @RequestParam("id") Long id) {
 
-	@RequestMapping("/delete")
-	public String removeProductById(Model model, @RequestParam("id") Long id) {
-		productService.remove(id);
+        Product product = productService.findOne(id);
+        model.addAttribute("product", product);
 
-		return "redirect:/products";
-	}
+        return "product";
+    }
 
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String getAddNewProductForm(@ModelAttribute("newProduct") Product newProduct) {
-	   return "addProduct";
-	}
-	   
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String processAddNewProductForm(@ModelAttribute("newProduct") @Valid Product productToBeAdded, BindingResult result) {
-		if(result.hasErrors()) {
-			return "addProduct";
-		}
+    @RequestMapping("/delete")
+    public String removeProductById(Model model, @RequestParam("id") Long id) {
+        productService.remove(id);
 
- 		try {
-			productService.save(productToBeAdded);
-		} catch (Exception up) {
-	      System.out.println("Transaction Failed!!!");
- 
-		}
-		
-	   	return "redirect:/products";
-	}
-	
-   
+        return "redirect:/products";
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String getAddNewProductForm(@ModelAttribute("newProduct") Product newProduct) {
+        return "addProduct";
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String processAddNewProductForm(@ModelAttribute("newProduct") @Valid Product productToBeAdded, BindingResult result) {
+        if (result.hasErrors()) {
+            return "addProduct";
+        }
+
+        try {
+            productService.save(productToBeAdded);
+        } catch (Exception up) {
+            System.out.println("Transaction Failed!!!");
+
+        }
+
+        return "redirect:/products";
+    }
+
+
 }

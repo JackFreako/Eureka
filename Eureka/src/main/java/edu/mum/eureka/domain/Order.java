@@ -2,8 +2,10 @@ package edu.mum.eureka.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Table(name = "Orders")
@@ -19,17 +21,17 @@ public class Order implements Serializable {
     @Column(name = "OrderDate", nullable = false)
     private Date orderDate;
 
-    @Column(name = "OrderNum", nullable = false)
-    private int orderNum;
+    @Transient
+    private int nextOrderDetailNum = 0;
 
-    @Column(name = "Amount", nullable = false)
+    @Transient
     private double amount;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinColumn(name = "CustomerId", foreignKey = @ForeignKey(name = "FK_Order_CustInfo"))
     private CustomerInfo customerInfo;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "OrderDetailId", foreignKey = @ForeignKey(name = "FK_Order_OrderDetail"))
     private List<OrderDetail> orderDetails;
 
@@ -49,16 +51,19 @@ public class Order implements Serializable {
         this.orderDate = orderDate;
     }
 
-    public int getOrderNum() {
-        return orderNum;
+    public int getNextOrderDetailNum() {
+        return nextOrderDetailNum;
     }
 
-    public void setOrderNum(int orderNum) {
-        this.orderNum = orderNum;
+    public void setNextOrderDetailNum(int nextOrderDetailNum) {
+        this.nextOrderDetailNum = nextOrderDetailNum;
     }
 
     public double getAmount() {
-        return amount;
+        if (this.orderDetails != null) {
+            return this.orderDetails.stream().mapToDouble(OrderDetail::getAmount).sum();
+        }
+        return 0;
     }
 
     public void setAmount(double amount) {
@@ -79,5 +84,25 @@ public class Order implements Serializable {
 
     public void setOrderDetails(List<OrderDetail> orderDetails) {
         this.orderDetails = orderDetails;
+    }
+
+    public void addOrderDetail(OrderDetail orderDetail) {
+        if (this.orderDetails == null) {
+            this.orderDetails = new ArrayList<>();
+        }
+        this.orderDetails.add(orderDetail);
+    }
+
+    public void removeOrderDetail(int tempId) {
+        if (this.orderDetails != null) {
+            Optional<OrderDetail> orderDetail = this.orderDetails.stream().filter(t -> t.getTempId() == tempId).findFirst();
+            if (orderDetail.isPresent()) {
+                this.orderDetails.remove(orderDetail.get());
+            }
+        }
+    }
+
+    public void incNextOrderDetailNum() {
+        this.nextOrderDetailNum += 1;
     }
 }

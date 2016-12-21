@@ -33,8 +33,7 @@ public class TestOrder {
         customerInfo.setPhone("5456545678");
 
         Order order = new Order();
-        order.setOrderNum(10);
-        order.setAmount(20D);
+        order.setNextOrderDetailNum(10);
         order.setOrderDate(new Date());
         order.setCustomerInfo(customerInfo);
 
@@ -52,8 +51,7 @@ public class TestOrder {
             int qty = random.nextInt();
             OrderDetail orderDetail = new OrderDetail();
             orderDetail.setPrice(price);
-            orderDetail.setQuanity(qty);
-            orderDetail.setAmount(orderDetail.getQuanity() * orderDetail.getPrice());
+            orderDetail.setQuantity(qty);
             orderDetails.add(orderDetail);
         }
         return orderDetails;

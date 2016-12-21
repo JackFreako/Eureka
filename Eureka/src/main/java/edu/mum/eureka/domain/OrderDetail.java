@@ -17,26 +17,22 @@ public class OrderDetail implements Serializable {
     @Column(name = "Id", nullable = false, unique = true)
     private long id;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "Order_Id", nullable = false, //
-//            foreignKey = @ForeignKey(name = "ORDER_DETAIL_ORD_FK"))
-    @Transient
-    private Order order;
 
-
-//    @OneToMany(mappedBy = "orderDetails" , fetch = FetchType.EAGER)
-    @Transient
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.REFRESH, CascadeType.DETACH})
+    @JoinColumn(name = "ProductId")
     private Product product;
 
-    @Column(name = "Quanity", nullable = false)
-    private int quanity;
+    @Column(name = "Quantity", nullable = false)
+    private int quantity;
 
     @Column(name = "Price", nullable = false)
     private double price;
 
-    @Column(name = "Amount", nullable = false)
+    @Transient
     private double amount;
 
+    @Transient
+    private int tempId;
 
     public long getId() {
         return id;
@@ -44,14 +40,6 @@ public class OrderDetail implements Serializable {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
     }
 
     public Product getProduct() {
@@ -62,14 +50,6 @@ public class OrderDetail implements Serializable {
         this.product = product;
     }
 
-    public int getQuanity() {
-        return quanity;
-    }
-
-    public void setQuanity(int quanity) {
-        this.quanity = quanity;
-    }
-
     public void setPrice(double price) {
         this.price = price;
     }
@@ -78,13 +58,23 @@ public class OrderDetail implements Serializable {
         return price;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
     public double getAmount() {
-        return amount;
+        return this.quantity * this.price;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
 
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getTempId() {
+        return tempId;
+    }
+
+    public void setTempId(int tempId) {
+        this.tempId = tempId;
+    }
 }

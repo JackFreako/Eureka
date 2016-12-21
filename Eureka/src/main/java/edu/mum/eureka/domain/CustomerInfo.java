@@ -1,6 +1,7 @@
 package edu.mum.eureka.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by rahul on 12/20/16.
@@ -8,7 +9,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "CustomerInfo")
-public class CustomerInfo {
+public class CustomerInfo implements Serializable {
+
+    private static final long serialVersionUID = -2587670215015463100L;
 
     @Id
     @GeneratedValue
@@ -29,11 +32,6 @@ public class CustomerInfo {
 
     @Column(name = "Phone", length = 10, nullable = false)
     private String phone;
-
-    //    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "Customer_Id", nullable = false, foreignKey = @ForeignKey(name = "ORDER_Customer_FK"))
-    @Transient
-    private Order order;
 
     public long getId() {
         return id;
