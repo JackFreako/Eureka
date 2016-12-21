@@ -34,6 +34,13 @@
 									class="btn btn-primary"> <span
 									class="glyphicon-info-sign glyphicon" /></span> Details
 								</a>
+								&nbsp;
+								<a
+										href=" <spring:url value="/products/delete?id=${product.id}" /> "
+										class="btn btn-primary"> <span
+										class="glyphicon-remove glyphicon" /></span> Remove
+								</a>
+
 							</p>
 
 						</div>
@@ -42,9 +49,7 @@
 			</c:forEach>
 		</div>
 		<br/>
-		<a href="<spring:url value="/postLogin" />" class="btn btn-default">
-			<span class="glyphicon-hand-left glyphicon"></span> Back to Home
-		</a>
+		<p><button type=button onclick=window.location.href="<spring:url value="/welcome" />">Home</button></p>
 	</section>
 </body>
 </html>

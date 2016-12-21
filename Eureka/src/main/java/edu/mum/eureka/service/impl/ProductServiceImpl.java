@@ -28,6 +28,8 @@ public class ProductServiceImpl implements ProductService{
  	public void save(Product product) {
 		   productDao.save(product);
 	}
+
+	public void remove(long productID) { productDao.delete(productID);}
 	
 	public Product findOne(long productID) {
 		return productDao.findOne(productID);

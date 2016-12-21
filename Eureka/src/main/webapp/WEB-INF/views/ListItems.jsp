@@ -30,7 +30,7 @@
 	</form>
 	<form action="products/all" method="get">
 			<input id="submit" type="submit"
-				   value="List products">
+				   value="Product List">
 	</form>
 	<form action="users/add" method="get">
            <input id="submit" type="submit"  
