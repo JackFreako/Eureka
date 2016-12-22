@@ -1,7 +1,17 @@
 package edu.mum.eureka.domain;
 
-import javax.persistence.*;
 import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "Product")
@@ -13,15 +23,28 @@ public class Product implements Serializable {
     @Column(name = "Id")
     private long id;
 
+    
+    @NotEmpty
     @Column(name = "Name")
     private String name;
 
     @Column(name = "Description")
     private String description;
 
+    //@Pattern(regexp="^[1-9]\\d$",message="{Product.price.valid}")
+    //@NotNull
     @Column(name = "Price")
-    private float price;
-
+    private float price;      
+    
+    public Product() {}
+    
+    
+	public Product (String name, String description,float price ) {
+		   this.name = name;
+		   this.description = description;
+		   this.price = price;
+	   }
+    
     public long getId() {
         return id;
     }

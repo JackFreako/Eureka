@@ -34,7 +34,24 @@ public class Order implements Serializable {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "OrderDetailId", foreignKey = @ForeignKey(name = "FK_Order_OrderDetail"))
     private List<OrderDetail> orderDetails;
-
+    
+    
+    public Order() {}
+	   public Order (Date orderDate, double amount,CustomerInfo customerInfo,List<OrderDetail> orderDetails) {
+		   this.orderDate = orderDate;
+		   this.amount = amount;
+		   this.customerInfo = customerInfo;
+		   this.orderDetails = orderDetails;
+	   }
+    
+    
+	   
+	   public Order (Date orderDate,List<OrderDetail> orderDetails) {
+		   this.orderDate = orderDate;		   
+		   this.orderDetails = orderDetails;
+	   }
+	   
+	   
     public long getId() {
         return id;
     }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:remove="all">Template for Order email </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+    
+  
+        <p th:text="#{greeting(${name})}"/>
+  
+            <H4> We have received your order and are Processing it !</H4>
+  
+        <p>Here are your Order details:</p>
+ 		<!--  <b>Order Number: </b> <span th:text="${order.orderNumber}"></span>-->
+ 		
+ <div th:each="orderDetail : ${order.orderDetails}" > 
+  <div style="text-indent: 3em;">		
+	 		<p><b>Product: </b> <span th:text="${orderDetail.product.name}"></span></p>
+	 		<!--<p><b>Quantity: </b> <span th:text="${orderDetail.quantity}"></span></p>-->
+	 		<p><b>Price: </b> <span th:text="${orderDetail.product.price}"></span></p>
+</div>	
+	 		        <!--<p><b>Total: </b> <span th:text="${item.quantity} * ${item.product.price}"></span></p>-->
+		</div>
+		
+		
+		<p><br />
+            Thanks for your order, <br />
+            &emsp; <em><b>We hope you enjoyed your shopping Experience...Come back soon...Eureka Online Shopping.</b></em>
+        </p>
+    </body>
+</html>

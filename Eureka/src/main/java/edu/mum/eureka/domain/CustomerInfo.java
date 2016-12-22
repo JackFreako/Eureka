@@ -1,7 +1,15 @@
 package edu.mum.eureka.domain;
 
-import javax.persistence.*;
 import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Created by rahul on 12/20/16.
@@ -18,15 +26,18 @@ public class CustomerInfo implements Serializable {
     @Column(name = "Id")
     private long id;
 
+    @NotEmpty
     @Column(name = "FirstName", length = 20, nullable = false)
     private String firstName;
 
+    @NotEmpty
     @Column(name = "LastName", length = 20, nullable = true)
     private String lastName;
 
     @Column(name = "Address", length = 200, nullable = false)
     private String address;
 
+    @Email
     @Column(name = "Email", length = 50, nullable = false)
     private String email;
 

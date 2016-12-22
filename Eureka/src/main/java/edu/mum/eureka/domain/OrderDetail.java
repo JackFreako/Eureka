@@ -12,9 +12,9 @@ public class OrderDetail implements Serializable {
 
     private static final long serialVersionUID = 7550745928843183535L;
 
-    @Id
     @GeneratedValue
     @Column(name = "Id", nullable = false, unique = true)
+    @Id
     private long id;
 
 
@@ -30,7 +30,15 @@ public class OrderDetail implements Serializable {
 
     @Transient
     private double amount;
-
+    
+    
+    public OrderDetail() {}
+    
+    public OrderDetail (Integer  quantity,  Product product ) {
+	   this.quantity = quantity;
+	   this.product = product;
+    }
+    
     @Transient
     private int tempId;
 
