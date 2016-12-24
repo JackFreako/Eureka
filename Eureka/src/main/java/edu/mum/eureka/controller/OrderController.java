@@ -76,14 +76,14 @@ public class OrderController {
             RabbitTemplate topicTemplate =  context.getBean("topicTemplate",RabbitTemplate.class);
             orderService.publish(topicTemplate, order);
             
-            
-            ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-			        "context/applicationContext.xml");
-            
+//
+//            ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
+//			        "context/applicationContext.xml");
+//
             //Send Email to Customer
             //String documentName = "AlarmClock.docx";
-		    EmailService emailService = (EmailService) applicationContext.getBean("emailService");
-		    emailService.sendOrderReceivedMail("your_name_here", "foo@gmail.com",order,new Locale("en"));
+//		    EmailService emailService = (EmailService) applicationContext.getBean("emailService");
+//		    emailService.sendOrderReceivedMail("your_name_here", "foo@gmail.com",order,new Locale("en"));
 		    
         } else {
             //TODO: Show no order.
